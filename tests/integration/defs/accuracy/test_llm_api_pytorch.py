@@ -29,7 +29,8 @@ from tensorrt_llm._torch.model_config import MoeLoadBalancerConfig
 
 # isort: off
 from tensorrt_llm.llmapi import (
-    AttentionDpConfig, CudaGraphConfig, DeepSeekSparseAttentionConfig,
+    AttentionDpConfig, CapacitySchedulerPolicy, ContextChunkingPolicy,
+    CudaGraphConfig, DeepSeekSparseAttentionConfig,
     DFlashDecodingConfig, DSparkDecodingConfig, DraftTargetDecodingConfig,
     Eagle3DecodingConfig, KvCacheConfig, MambaStateConfig,
     MiniMaxM3SparseAttentionConfig, MoeConfig, MTPDecodingConfig,
@@ -4393,6 +4394,67 @@ class TestKimiK25(LlmapiAccuracyTestHarness):
             task.evaluate(llm)
             task = GSM8K(model_name)
             task.evaluate(llm)
+
+
+@pytest.mark.timeout(10800)
+@pytest.mark.skip_less_device_memory(100000)
+class TestKimiK26(LlmapiAccuracyTestHarness):
+    MODEL_NAME = "moonshotai/Kimi-K2.6"
+    MODEL_PATH = f"{llm_models_root()}/Kimi-K2.6-NVFP4"
+    EAGLE3_MODEL_PATH = f"{llm_models_root()}/kimi-k2.6-eagle3-mla"
+
+    @skip_pre_blackwell
+    @pytest.mark.skip_less_mpi_world_size(8)
+    @pytest.mark.skip_less_device_memory(120000)
+    @parametrize_with_ids("eagle3", [False, True])
+    def test_nvfp4(self, eagle3):
+        """NVFP4 accuracy on 8 GPUs, TP8.
+
+        The LLM configuration mirrors the serving config used to reproduce
+        GitHub issue #14825. eagle3=False is the baseline (spec dec disabled);
+        eagle3=True enables Eagle3 to measure the GPQA Diamond accuracy delta.
+        Serving-only knobs from that config (print_iter_log, stream_interval,
+        num_postprocess_workers) are omitted: they do not affect accuracy.
+        enable_lm_head_tp_in_adp is likewise omitted, since it only applies
+        under attention DP, which this case does not enable.
+        """
+        spec_config = None
+        if eagle3:
+            spec_config = Eagle3DecodingConfig(
+                max_draft_len=3,
+                speculative_model=self.EAGLE3_MODEL_PATH,
+                eagle3_layers_to_capture={2, 30, 58},
+            )
+        # Eagle3 one-model loads draft weights alongside base weights; reduce
+        # KV cache fraction to leave headroom for the additional draft tensors.
+        kv_free_fraction = 0.80 if eagle3 else 0.92
+        with LLM(self.MODEL_PATH,
+                 tensor_parallel_size=8,
+                 pipeline_parallel_size=1,
+                 kv_cache_config=KvCacheConfig(
+                     free_gpu_memory_fraction=kv_free_fraction,
+                     dtype="fp8"),
+                 cuda_graph_config=CudaGraphConfig(enable_padding=True,
+                                                   max_batch_size=512),
+                 moe_config=MoeConfig(backend="TRTLLM"),
+                 scheduler_config=SchedulerConfig(
+                     capacity_scheduler_policy=CapacitySchedulerPolicy.
+                     MAX_UTILIZATION,
+                     context_chunking_policy=ContextChunkingPolicy.
+                     EQUAL_PROGRESS),
+                 enable_chunked_prefill=True,
+                 trust_remote_code=True,
+                 speculative_config=spec_config) as llm:
+            assert llm.args.quant_config.quant_algo == QuantAlgo.NVFP4
+            assert llm.args.quant_config.kv_cache_quant_algo == QuantAlgo.FP8
+
+            if not eagle3:
+                task = GSM8K(self.MODEL_NAME)
+                task.evaluate(llm)
+
+            task = GPQADiamond(self.MODEL_NAME)
+            task.evaluate(llm,
+                          extra_evaluator_kwargs=dict(apply_chat_template=True))
 
 
 class TestQwen2_7BInstruct(LlmapiAccuracyTestHarness):
