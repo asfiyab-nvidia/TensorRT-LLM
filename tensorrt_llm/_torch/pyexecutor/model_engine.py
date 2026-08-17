@@ -7721,14 +7721,14 @@ class PyTorchModelEngine(ModelEngine):
             # live spec_metadata) so the two can be correlated by warmup
             # pass / capture state.
             if os.environ.get("TRTLLM_REPRO_14874") and key is not None:
-                seed = getattr(self._get_spec_worker(), "seed", None)
+                seeds = getattr(spec_metadata, "seeds", None)
                 live_greedy = getattr(spec_metadata, "is_all_greedy_sample",
                                       None)
                 print(
                     f"[repro-14874] key warmup={self.is_warmup} "
                     f"key_greedy={key.is_all_greedy_sample} "
                     f"live_spec_metadata.is_all_greedy_sample={live_greedy} "
-                    f"seed={None if seed is None else int(seed.item())}",
+                    f"seed={None if seeds is None else seeds[:4].tolist()}",
                     flush=True)
 
             return outputs
