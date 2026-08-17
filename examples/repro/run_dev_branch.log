@@ -1,0 +1,976 @@
+Skipping import of cpp extensions due to incompatible torch version 2.12.0a0+5aff3928d8.nv26.05 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[TensorRT-LLM] TensorRT LLM version: 1.3.0rc25
+[08/17/2026-17:26:53] [TRT-LLM] [I] [llmapi] Using LLM with PyTorch backend
+[08/17/2026-17:26:53] [TRT-LLM] [W] [llmapi] Using default gpus_per_node: 1
+[08/17/2026-17:26:53] [TRT-LLM] [I] [llmapi] neither checkpoint_format nor checkpoint_loader were provided, checkpoint_format will be set to HF.
+`torch_dtype` is deprecated! Use `dtype` instead!
+[33;20mrank 0 using MpiPoolSession to spawn MPI processes
+[0mSkipping import of cpp extensions due to incompatible torch version 2.12.0a0+5aff3928d8.nv26.05 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+[TensorRT-LLM] TensorRT LLM version: 1.3.0rc25
+[TRT-LLM] [I] [runtime][RANK 0] Refreshed the MPI local session
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading safetensors weights in parallel:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading safetensors weights in parallel: 100%|██████████| 4/4 [00:00<00:00, 141.67it/s]
+
+Loading weights concurrently:   0%|          | 0/709 [00:00<?, ?it/s]
+Loading weights concurrently:  17%|█▋        | 120/709 [00:00<00:00, 692.14it/s]
+Loading weights concurrently:  27%|██▋       | 190/709 [00:00<00:00, 531.24it/s]
+Loading weights concurrently:  34%|███▍      | 243/709 [00:00<00:01, 445.53it/s]
+Loading weights concurrently:  42%|████▏     | 301/709 [00:00<00:00, 477.64it/s]
+Loading weights concurrently:  53%|█████▎    | 376/709 [00:00<00:00, 554.77it/s]
+Loading weights concurrently:  62%|██████▏   | 439/709 [00:00<00:00, 569.74it/s]
+Loading weights concurrently:  70%|███████   | 498/709 [00:00<00:00, 546.81it/s]
+Loading weights concurrently:  78%|███████▊  | 554/709 [00:01<00:00, 547.20it/s]
+Loading weights concurrently:  87%|████████▋ | 616/709 [00:01<00:00, 546.55it/s]
+Loading weights concurrently:  96%|█████████▌| 680/709 [00:01<00:00, 544.31it/s]
+Loading weights concurrently: 100%|██████████| 709/709 [00:01<00:00, 506.17it/s]
+
+Loading bin weights in parallel:   0%|          | 0/1 [00:00<?, ?it/s]
+Loading bin weights in parallel: 100%|██████████| 1/1 [00:00<00:00, 24.49it/s]
+
+Loading weights concurrently:   0%|          | 0/28 [00:00<?, ?it/s]
+Loading weights concurrently:  64%|██████▍   | 18/28 [00:03<00:01,  5.51it/s]
+Loading weights concurrently:  82%|████████▏ | 23/28 [00:05<00:01,  3.91it/s]
+Loading weights concurrently:  86%|████████▌ | 24/28 [00:05<00:00,  4.00it/s]
+Loading weights concurrently:  93%|█████████▎| 26/28 [00:06<00:00,  3.74it/s]
+Loading weights concurrently: 100%|██████████| 28/28 [00:06<00:00,  4.37it/s]
+Model init total -- 49.57s
+[TRT-LLM] [I] [batchmgr][RANK 0] Max KV cache blocks per sequence: 4097 [window size=131083], tokens per block=32, primary blocks=4224, secondary blocks=0, max sequence length=131083
+[TRT-LLM] [I] [batchmgr][RANK 0] Number of tokens per block: 32.
+[TRT-LLM] [I] [batchmgr][RANK 0] [MemUsageChange] Allocated 16.50 GiB for max tokens in paged KV cache (135168).
+[TRT-LLM] [I] [batchmgr][RANK 0] Max KV cache blocks per sequence: 4097 [window size=131083], tokens per block=32, primary blocks=4224, secondary blocks=0, max sequence length=131083
+[TRT-LLM] [I] [batchmgr][RANK 0] Number of tokens per block: 32.
+[TRT-LLM] [I] [batchmgr][RANK 0] [MemUsageChange] Allocated 0.52 GiB for max tokens in paged KV cache (135168).
+[TRT-LLM] [W] [thop][RANK 0] Attention workspace size is not enough, increase the size from 0 bytes to 103284736 bytes
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[TRT-LLM] [W] [thop][RANK 0] Attention workspace size is not enough, increase the size from 0 bytes to 103284736 bytes
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=None
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=1
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=2
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=3
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=4
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=5
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=6
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=7
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=8
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=9
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=10
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=11
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=12
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=13
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=14
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=15
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=16
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=17
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=18
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=19
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=20
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=21
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=22
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=23
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=24
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=25
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=26
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=27
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=28
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=29
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=30
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=31
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=32
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=33
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=34
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=36
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=38
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=40
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=42
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=44
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=46
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=48
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=50
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=52
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=54
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=56
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=58
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=60
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=62
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=64
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=66
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=68
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=70
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=72
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=74
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=76
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=78
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=80
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=82
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=84
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=86
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=88
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=90
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=92
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=94
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=96
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=98
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=100
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[TRT-LLM] [I] [batchmgr][RANK 0] Max KV cache blocks per sequence: 4097 [window size=131083], tokens per block=32, primary blocks=10194, secondary blocks=0, max sequence length=131083
+[TRT-LLM] [I] [batchmgr][RANK 0] Number of tokens per block: 32.
+[TRT-LLM] [I] [batchmgr][RANK 0] [MemUsageChange] Allocated 39.82 GiB for max tokens in paged KV cache (326208).
+[TRT-LLM] [I] [batchmgr][RANK 0] Max KV cache blocks per sequence: 4097 [window size=131083], tokens per block=32, primary blocks=10194, secondary blocks=0, max sequence length=131083
+[TRT-LLM] [I] [batchmgr][RANK 0] Number of tokens per block: 32.
+[TRT-LLM] [I] [batchmgr][RANK 0] [MemUsageChange] Allocated 1.24 GiB for max tokens in paged KV cache (326208).
+[TRT-LLM] [W] [thop][RANK 0] Attention workspace size is not enough, increase the size from 0 bytes to 103284736 bytes
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[TRT-LLM] [W] [thop][RANK 0] Attention workspace size is not enough, increase the size from 0 bytes to 103284736 bytes
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=102
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=103
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=104
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=105
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=106
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=107
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=108
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=109
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=110
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=111
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=112
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=113
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=114
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=115
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=116
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=117
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=118
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=119
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=120
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=121
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=122
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=123
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=124
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=125
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=126
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=127
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=128
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=129
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=130
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=131
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=132
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=133
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=134
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=135
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=True key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=136
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=138
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=140
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=142
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=144
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=146
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=148
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=150
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=152
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=154
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=156
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=158
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=160
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=162
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=164
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=166
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=168
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=170
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=172
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=174
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=176
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=178
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=180
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=182
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=184
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=186
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=188
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=190
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=192
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=194
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=196
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=198
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=200
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=202
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=True key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=204
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+
+Processed requests:   0%|          | 0/1 [00:00<?, ?it/s][repro-14874] branch=argmax spec_metadata.is_all_greedy_sample=True
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+[repro-14874] key warmup=False key_greedy=True live_spec_metadata.is_all_greedy_sample=True seed=204
+
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s]
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s]
+
+Processed requests:   0%|          | 0/1 [00:00<?, ?it/s][repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=206
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=207
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=208
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=209
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=210
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=211
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=212
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=213
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=214
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=215
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=216
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=217
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=218
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=219
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=220
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=221
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=222
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=223
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=224
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=225
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=226
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=227
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=228
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=229
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=230
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=231
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=232
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=233
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=234
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=235
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=236
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=237
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=238
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=239
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=240
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=241
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=242
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=243
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=244
+
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.35it/s]
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.35it/s]
+
+Processed requests:   0%|          | 0/1 [00:00<?, ?it/s][repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=246
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=247
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=248
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=249
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=250
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=251
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=252
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=253
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=254
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=255
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=256
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=257
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=258
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=259
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=260
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=261
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=262
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=263
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=264
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=265
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=266
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=267
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=268
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=269
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=270
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=271
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=272
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=273
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=274
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=275
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=276
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=277
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=278
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=279
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=280
+
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]
+
+Processed requests:   0%|          | 0/1 [00:00<?, ?it/s][repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=282
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=283
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=284
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=285
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=286
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=287
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=288
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=289
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=290
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=291
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=292
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=293
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=294
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=295
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=296
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=297
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=298
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=299
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=300
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=301
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=302
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=303
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=304
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=305
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=306
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=307
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=308
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=309
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=310
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=311
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=312
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=313
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=314
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=315
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=316
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=317
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=318
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=319
+
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Processed requests:   0%|          | 0/1 [00:00<?, ?it/s][repro-14874] branch=sample spec_metadata.is_all_greedy_sample=False
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=321
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=322
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=323
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=324
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=325
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=326
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=327
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=328
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=329
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=330
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=331
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=332
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=333
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=334
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=335
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=336
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=337
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=338
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=339
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=340
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=341
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=342
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=343
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=344
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=345
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=346
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=347
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=348
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=349
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=350
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=351
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=352
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=353
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=354
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=355
+[repro-14874] key warmup=False key_greedy=False live_spec_metadata.is_all_greedy_sample=False seed=356
+
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s]
+Processed requests: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s]
+
+========================================================================
+Prompt: 'Once upon a time, in a kingdom far away,'
+Greedy (T=0): ' there was a beautiful princess named Sophia. She was kind, gentle, and loved by all who knew her. But Sophia had a secret: she was cursed by a wicked sorcerer who had cast a spell on her, making her forget her'
+------------------------------------------------------------------------
+[non-greedy rep 0] ' there was a magical kingdom ruled by the benevolent King Eryndor Thorne. This kingdom was known for its lush gardens, sparkling rivers, and enchanted forests.\nThe kingdom was home to a diverse population of magical creatures, including unic'
+[non-greedy rep 1] ' there was a king who had a great desire to build a magnificent palace. He wanted it to be the most beautiful and grand palace in all the land, with high towers and grand halls. He spent all his days and nights thinking about how'
+[non-greedy rep 2] ' a brave knight named Sir E decided to take a journey to the farthest reaches of the land. He had heard tales of a mysterious and magical forest, where the ancient trees whispered secrets to those who listened, and the creatures of the wild'
+[non-greedy rep 3] ' there lived an old wise wizard named Orion. He had been living in the kingdom for many years, and everyone knew him as the wisest man in the land. People from all over would come to visit him and seek his advice on matters'
+========================================================================
