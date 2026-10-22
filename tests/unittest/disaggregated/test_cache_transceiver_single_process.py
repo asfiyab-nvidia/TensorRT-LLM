@@ -214,6 +214,7 @@ class KvCacheConfigV2:
     # tensorrt_llm/llmapi/llm_args.py; KVCacheManagerV2._build_base_config()
     # reads it unconditionally.
     kv_pool_rebalance_config: KvPoolRebalanceConfig = field(default_factory=KvPoolRebalanceConfig)
+    enable_kv_pool_rebalance: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -401,6 +402,7 @@ def _create_cache_manager(
             mapping=mapping,
             dtype=DataType.FLOAT,
             vocab_size=VOCAB_SIZE,
+            is_disagg=True,
         )
     else:
         is_vswa = max_attention_window_vec and len(set(max_attention_window_vec)) > 1
