@@ -261,14 +261,14 @@ def test_workspace_bytes_zero_only_for_absorption_mode_sparse_mla(
     assert (w == 0) if expect_zero else (w > 0)
 
 
-def test_workspace_bytes_use_helix_context_heads(monkeypatch):
+def test_workspace_bytes_use_helix_context_heads(monkeypatch: pytest.MonkeyPatch) -> None:
     # Helix context attention runs heads / (tp * cp), so tp4 x cp2 stages the
     # same per-token workspace as tp8 and half of plain tp4.
     monkeypatch.setattr(trtllm_backend, "get_sm_version", lambda: 100)
     monkeypatch.setenv("TRTLLM_MLA_SHORT_SEQ_MHA_THRESHOLD", "0")
     model_config = _fp8_mla_model_config(None)
 
-    def w(tp_size, cp_size):
+    def w(tp_size: int, cp_size: int) -> int:
         mapping = SimpleNamespace(
             enable_attention_dp=False,
             tp_size=tp_size,

@@ -475,6 +475,7 @@ def test_estimation_prepare_promotes_skip_est_for_v2() -> None:
         return SimpleNamespace(
             _skip_est=False,
             _is_disagg=True,
+            _is_agg_helix=False,
             _mapping=SimpleNamespace(cp_config={"cp_type": cp_type}),
             _is_kv_cache_manager_v2=is_v2,
             _model_engine=SimpleNamespace(

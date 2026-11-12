@@ -15,7 +15,6 @@
 import copy
 import dataclasses
 import os
-import sys
 from contextlib import ExitStack
 from typing import Dict, List, Optional, Sequence, Union
 
@@ -112,6 +111,11 @@ _STANDALONE_DRAFT_TOKENS_PER_BLOCK = 32
 # Aggregated helix that skips KV cache estimation sizes from a fraction of
 # free memory; this lower default leaves room for prefill activations.
 _HELIX_AGG_FREE_GPU_MEMORY_FRACTION = 0.6
+
+# What an aggregated helix rank without a context-MLA admission cap sends to the
+# cross-rank MIN. TorchDist reduces scalars in float64, which holds 2**53
+# exactly (sys.maxsize would come back as 2**63).
+_NO_CTX_MLA_KV_LEN_CAP = 2**53
 
 
 def _get_num_reserved_index_slots(spec_config: Optional[SpeculativeConfig],
@@ -211,6 +215,14 @@ def is_disagg_enabled(
     """Whether this executor participates in disaggregated serving."""
     return (cache_transceiver_config is not None
             and cache_transceiver_config.backend is not None)
+
+
+def is_agg_helix(
+        mapping: Mapping,
+        cache_transceiver_config: Optional[CacheTransceiverConfig]) -> bool:
+    """Whether the executor runs aggregated Helix: Helix CP without a cache transceiver."""
+    return (mapping.has_cp_helix()
+            and not is_disagg_enabled(cache_transceiver_config))
 
 
 def _validate_v2_mamba_block_reuse_without_rebalance(
@@ -1021,8 +1033,7 @@ class KvCacheCreator:
         self._sparse_attention_config = sparse_attention_config
         self._tokens_per_block = tokens_per_block
         self._max_seq_len = max_seq_len
-        # Estimation can shrink _max_seq_len; cache ownership and workspace
-        # reserves must stay sized for the configured value.
+        # Estimation can shrink _max_seq_len; cache ownership must stay fixed.
         self._unification_max_seq_len = max_seq_len
         self._max_batch_size = max_batch_size
         self._net_max_seq_len = net_max_seq_len
@@ -1036,7 +1047,7 @@ class KvCacheCreator:
         self._kv_cache_manager_cls = self._get_model_kv_cache_manager_cls()
         self._is_kv_cache_manager_v2 = issubclass(self._kv_cache_manager_cls,
                                                   KVCacheManagerV2)
-        if mapping.has_cp_helix() and not is_disagg:
+        if self._is_agg_helix:
             if not self._is_kv_cache_manager_v2:
                 raise ValueError(
                     "Aggregated helix context parallelism requires "
@@ -1070,6 +1081,12 @@ class KvCacheCreator:
         # covers, computed in configure_kv_cache_capacity and carried to the KV manager so the scheduler
         # reads it directly instead of re-deriving it from pool layout. None until reserved (or w == 0).
         self._fp8_ctx_mla_kv_len_cap = None
+
+    @property
+    def _is_agg_helix(self) -> bool:
+        """Whether this executor runs aggregated Helix (no cache transceiver)."""
+        return (self._mapping.cp_config.get('cp_type') == CpType.HELIX
+                and not self._is_disagg)
 
     def _get_model_kv_cache_manager_cls(
         self,
@@ -1664,8 +1681,7 @@ class KvCacheCreator:
 
     def _get_token_num_for_estimation(self) -> int:
         """Compute KV cache capacity required for estimate_max_kv_cache_tokens to succeed."""
-        agg_helix = (self._mapping.cp_config.get('cp_type') == CpType.HELIX
-                     and not self._is_disagg)
+        agg_helix = self._is_agg_helix
         if 'cp_type' in self._mapping.cp_config and not agg_helix:
             raise ValueError(
                 "KV cache size estimation supports context parallelism only "
@@ -1761,8 +1777,7 @@ class KvCacheCreator:
             return False
 
         estimating_kv_cache = True
-        agg_helix = (self._mapping.cp_config.get('cp_type') == CpType.HELIX
-                     and not self._is_disagg)
+        agg_helix = self._is_agg_helix
         if 'cp_type' in self._mapping.cp_config and not agg_helix:
             estimating_kv_cache = False
             logger.info(
@@ -2002,12 +2017,21 @@ class KvCacheCreator:
                 f"Reserving {mem_gb:.2f} GiB for multimodal encoder memory "
                 "not materialized by the profiling run.")
 
+        # The estimation KV manager lowers _max_seq_len to what its small pool
+        # fits. Under aggregated helix that pool holds less than one
+        # full-length sequence per rank, yet serving restores the configured
+        # length, so the reserves are sized for it; sizing them from the
+        # lowered value would under-admit context. Other deployments size them
+        # for the length estimation settled on.
+        agg_helix = self._is_agg_helix
+        reserve_max_seq_len = (self._unification_max_seq_len
+                               if agg_helix else self._max_seq_len)
         fixed_workspace_reserve = get_attention_workspace_fixed_bytes(
             self._model_engine.model.model_config,
             self._mapping,
             max_batch_size=self._max_batch_size,
             max_num_tokens=self._max_num_tokens,
-            max_seq_len=self._unification_max_seq_len,
+            max_seq_len=reserve_max_seq_len,
             enable_cuda_graph=self._llm_args.cuda_graph_config is not None,
         )
         # A decode arena can first appear after the peak prefill step. Reserve
@@ -2040,7 +2064,7 @@ class KvCacheCreator:
         if getattr(self._sparse_attention_config, "algorithm",
                    None) == "deepseek_v4":
             workspace_memory = get_indexer_mqa_logits_workspace_bytes(
-                self._max_num_tokens, self._unification_max_seq_len)
+                self._max_num_tokens, reserve_max_seq_len)
             budget_before = kv_cache_max_memory
             workspace_reserve = get_indexer_mqa_logits_workspace_reserve(
                 budget_before, workspace_memory)
@@ -2082,7 +2106,7 @@ class KvCacheCreator:
             self._kv_cache_config,
             self._max_batch_size,
             self._max_num_tokens,
-            self._unification_max_seq_len,
+            reserve_max_seq_len,
             self._llm_args.enable_chunked_prefill,
             workspace_is_chunked_prefill_bounded,
             chunked_workspace_profiled=profiled_mla_chunks,
@@ -2092,11 +2116,12 @@ class KvCacheCreator:
             require_chunked_workspace_profile=(
                 w_bytes_per_token > 0 and self._llm_args.enable_chunked_prefill
                 and get_sm_version() >= 100))
+        budget_before = kv_cache_max_memory
+        workspace_reserve = 0
+        local_cap = _NO_CTX_MLA_KV_LEN_CAP
         if w_bytes_per_token > 0 and kv_len_cap:
-            budget_before = kv_cache_max_memory
             k_bytes_per_token = self._get_kv_size_per_token().slope
-            if (mapping.cp_config.get('cp_type') == CpType.HELIX
-                    and not self._is_disagg):
+            if agg_helix:
                 # The cap counts global attended tokens; Helix stores each
                 # token's KV on one CP rank, so a global token costs this rank
                 # 1/cp of the rank-local slope.
@@ -2106,28 +2131,38 @@ class KvCacheCreator:
                                                   k_bytes_per_token,
                                                   w_bytes_per_token,
                                                   kv_len_cap))
-            if (mapping.cp_config.get('cp_type') == CpType.HELIX
-                    and not self._is_disagg):
-                # Aggregated helix ranks schedule independently but must admit
-                # the same context batches, so they agree on the smallest cap.
-                # A rank without a cap does not limit the others; the result
-                # is uncapped only when no rank has a cap.
+            if self._fp8_ctx_mla_kv_len_cap is not None:
                 local_cap = self._fp8_ctx_mla_kv_len_cap
-                cap = py_executor.dist.allreduce(
-                    sys.maxsize if local_cap is None else local_cap,
-                    op=ReduceOp.MIN)
-                self._fp8_ctx_mla_kv_len_cap = (None if cap == sys.maxsize
-                                                else cap)
-                workspace_reserve = (self._fp8_ctx_mla_kv_len_cap
-                                     or 0) * w_bytes_per_token
-            if workspace_reserve > 0:
-                kv_cache_max_memory = int(budget_before - workspace_reserve)
-                logger.info(
-                    f"Reserving {workspace_reserve / (GB):.2f} GiB for the context-MLA attention "
-                    f"workspace (w={w_bytes_per_token} B/token, admitting up to "
-                    f"{self._fp8_ctx_mla_kv_len_cap} tokens of summed attended KV): KV cache budget "
-                    f"{budget_before / (GB):.2f} -> {kv_cache_max_memory / (GB):.2f} GiB."
-                )
+            elif budget_before <= 0:
+                # The reserve applies but no KV cache budget is left for it.
+                local_cap = 0
+        if agg_helix:
+            # Aggregated helix ranks schedule independently but must admit the
+            # same context batches, so they agree on the smallest cap. Every
+            # rank calls this collective exactly once, even when it needs no
+            # reserve, so no rank waits on a call the others skip. A rank
+            # without a cap does not limit the others, and the result is
+            # uncapped only when no rank has a cap. A rank without budget
+            # sends 0, so every rank fails startup together.
+            cap = py_executor.dist.allreduce(local_cap, op=ReduceOp.MIN)
+            if cap <= 0:
+                raise RuntimeError(
+                    "Aggregated Helix context parallelism: at least one rank "
+                    "cannot fit the context-MLA attention workspace in its KV "
+                    "cache budget. Lower max_num_tokens or max_batch_size, or "
+                    "raise kv_cache_config.free_gpu_memory_fraction.")
+            self._fp8_ctx_mla_kv_len_cap = (
+                None if cap >= _NO_CTX_MLA_KV_LEN_CAP else int(cap))
+            workspace_reserve = (self._fp8_ctx_mla_kv_len_cap
+                                 or 0) * w_bytes_per_token
+        if workspace_reserve > 0:
+            kv_cache_max_memory = int(budget_before - workspace_reserve)
+            logger.info(
+                f"Reserving {workspace_reserve / (GB):.2f} GiB for the context-MLA attention "
+                f"workspace (w={w_bytes_per_token} B/token, admitting up to "
+                f"{self._fp8_ctx_mla_kv_len_cap} tokens of summed attended KV): KV cache budget "
+                f"{budget_before / (GB):.2f} -> {kv_cache_max_memory / (GB):.2f} GiB."
+            )
 
         # NOTE:
         # For KVCacheManager, KvCacheCreator currently controls capacity using two parameters in KVCacheConfig:

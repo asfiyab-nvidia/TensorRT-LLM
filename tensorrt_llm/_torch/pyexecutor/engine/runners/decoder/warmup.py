@@ -10,6 +10,7 @@ import gc
 import os
 import time
 from collections.abc import Callable
+from enum import Enum, auto
 from typing import TYPE_CHECKING, Any
 
 import torch
@@ -57,6 +58,19 @@ if TYPE_CHECKING:
     from .graphs import DecoderCudaGraphs, ForwardWarmup
     from .inputs import DecoderInputPreparer
     from .metadata import DecoderMetadata
+
+
+class AutotunerWarmupMode(Enum):
+    """Batches the autotuner warmup tunes on."""
+
+    # A context batch, then a single generation request.
+    CONTEXT_AND_SINGLE_GENERATION = auto()
+    # A context batch, then a max_batch_size generation batch: aggregated
+    # helix ranks both prefill and decode full batches.
+    CONTEXT_AND_FULL_GENERATION = auto()
+    # Only a max_batch_size generation batch: helix ranks on a disaggregated
+    # generation server never prefill.
+    GENERATION_ONLY = auto()
 
 
 class WarmupAgreement:
@@ -446,10 +460,8 @@ class DecoderWarmup:
                     gc.collect()
                     torch.cuda.empty_cache()
 
-        # Disaggregated helix generation servers never prefill, so they tune on
-        # generation requests only. V1 managers have no is_disagg and serve
-        # helix only on disaggregated generation servers.
-        disagg_helix = self.mapping.has_cp_helix() and getattr(kv_cache_manager, "is_disagg", True)
+        # Helix ranks on a disaggregated generation server never prefill.
+        disagg_helix = self.mapping.has_cp_helix() and self._config.is_disagg
         if self._context_warmups_supported and disagg_helix:
             with (
                 self._warmup_timer.phase(
@@ -457,7 +469,9 @@ class DecoderWarmup:
                 ),
                 self._torch_compile_bypass(),
             ):
-                self._run_autotuner_warmup(resource_manager, generation_only=True)
+                self._run_autotuner_warmup(
+                    resource_manager, mode=AutotunerWarmupMode.GENERATION_ONLY
+                )
             log_mem_snapshot("warmup/after_autotuner")
             gc.collect()
             torch.cuda.empty_cache()
@@ -468,10 +482,12 @@ class DecoderWarmup:
                 ),
                 self._torch_compile_bypass(),
             ):
-                # Aggregated helix also decodes full batches on these ranks.
-                self._run_autotuner_warmup(
-                    resource_manager, max_generation_batch=self.mapping.has_cp_helix()
+                mode = (
+                    AutotunerWarmupMode.CONTEXT_AND_FULL_GENERATION
+                    if self.mapping.has_cp_helix()
+                    else AutotunerWarmupMode.CONTEXT_AND_SINGLE_GENERATION
                 )
+                self._run_autotuner_warmup(resource_manager, mode=mode)
             log_mem_snapshot("warmup/after_autotuner")
             # Pre-JIT Mamba SSD multi-seq + HAS_INITSTATES=True Triton kernels
             # for Mamba hybrid models. Runs regardless of enable_autotuner,
@@ -867,7 +883,8 @@ class DecoderWarmup:
         self, resource_manager: ResourceManager, warmup_requests_configs: list[tuple[int, int]]
     ) -> None:
         for num_tokens, num_gen_tokens in warmup_requests_configs:
-            # Helix CP does not support warmup with context requests.
+            # General warmup builds no Helix context dummies; aggregated Helix
+            # warms prefill in the autotuner warmup instead.
             if self.mapping.has_cp_helix() and num_tokens != num_gen_tokens:
                 continue
             try:
@@ -1031,16 +1048,11 @@ class DecoderWarmup:
     def _run_autotuner_warmup(
         self,
         resource_manager: ResourceManager,
-        generation_only: bool = False,
-        max_generation_batch: bool = False,
+        mode: AutotunerWarmupMode = AutotunerWarmupMode.CONTEXT_AND_SINGLE_GENERATION,
     ) -> None:
         """Runs forward passes to populate the autotuner cache.
 
-        ``generation_only`` tunes on one batch of ``max_batch_size`` generation
-        requests instead of a context batch, for disaggregated Helix CP
-        generation workers. ``max_generation_batch`` keeps the context batch and
-        tunes that ``max_batch_size`` generation batch in place of a single
-        generation request, for aggregated Helix CP.
+        ``mode`` selects the batches to tune on; see ``AutotunerWarmupMode``.
         """
         from tensorrt_llm._torch.custom_ops.torch_custom_ops import (
             IS_FLASHINFER_MXFP8_CUTE_DSL_AVAILABLE,
@@ -1147,7 +1159,7 @@ class DecoderWarmup:
             self._config.max_num_tokens // tokens_per_gen_request,
         )
         max_gen_batch_tokens = num_gen_requests * tokens_per_gen_request
-        if generation_only:
+        if mode is AutotunerWarmupMode.GENERATION_ONLY:
             curr_max_num_tokens = max_gen_batch_tokens
         else:
             token_num_upper_bound = min(
@@ -1187,7 +1199,7 @@ class DecoderWarmup:
             f"FlashInfer MXFP8={enable_flashinfer_mxfp8_autotuner})..."
         )
 
-        if generation_only:
+        if mode is AutotunerWarmupMode.GENERATION_ONLY:
             warmup_configs = [(curr_max_num_tokens, num_gen_requests)]
         else:
             warmup_configs = [(curr_max_num_tokens, 0)]
@@ -1197,7 +1209,7 @@ class DecoderWarmup:
                 and not is_context_only_kv_cache(kv_cache_manager)
             ):
                 # Add generation requests to warmup the autotuner cache.
-                if max_generation_batch:
+                if mode is AutotunerWarmupMode.CONTEXT_AND_FULL_GENERATION:
                     warmup_configs.append((max_gen_batch_tokens, num_gen_requests))
                 else:
                     warmup_configs.append((tokens_per_gen_request, 1))
@@ -1206,9 +1218,9 @@ class DecoderWarmup:
             """Run one isolated tuning pass with fresh synthetic batches."""
             ran_forward = False
             with self._graphs.no_cuda_graph(), autotune_context:
-                for num_tokens, num_gen_requests in warmup_configs:
+                for num_tokens, batch_gen_requests in warmup_configs:
                     warmup_request = self._dummy_requests.create_warmup_request(
-                        resource_manager, num_tokens, num_gen_requests
+                        resource_manager, num_tokens, batch_gen_requests
                     )
                     with self._dummy_requests.release_batch_context(
                         warmup_request, resource_manager
@@ -1217,12 +1229,12 @@ class DecoderWarmup:
                             batch,
                             num_tokens,
                             f"autotuner, num_tokens={num_tokens}, "
-                            f"num_gen_requests={num_gen_requests}",
+                            f"num_gen_requests={batch_gen_requests}",
                         ):
                             continue
                         with self._warmup_timer.phase(
                             f"autotuner shape num_tokens={num_tokens}, "
-                            f"num_gen_requests={num_gen_requests}",
+                            f"num_gen_requests={batch_gen_requests}",
                             record=False,
                             log_start=True,
                         ):

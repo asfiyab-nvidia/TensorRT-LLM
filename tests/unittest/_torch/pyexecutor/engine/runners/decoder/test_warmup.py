@@ -40,7 +40,10 @@ from tensorrt_llm._torch.pyexecutor.engine.model_call import ModelCaller
 from tensorrt_llm._torch.pyexecutor.engine.runners.decoder import DecoderRunner
 from tensorrt_llm._torch.pyexecutor.engine.runners.decoder import warmup as warmup_module
 from tensorrt_llm._torch.pyexecutor.engine.runners.decoder.metadata import DecoderMetadata
-from tensorrt_llm._torch.pyexecutor.engine.runners.decoder.warmup import DecoderWarmup
+from tensorrt_llm._torch.pyexecutor.engine.runners.decoder.warmup import (
+    AutotunerWarmupMode,
+    DecoderWarmup,
+)
 from tensorrt_llm._torch.pyexecutor.kv_cache.kv_cache_manager_v2 import KVCacheManagerV2
 from tensorrt_llm._torch.pyexecutor.resource_manager import ResourceManager, ResourceManagerType
 from tensorrt_llm._torch.pyexecutor.runtime_hooks import DEFAULT_RUNTIME_HOOKS
@@ -1004,14 +1007,14 @@ class TestWarmupCleanup(unittest.TestCase):
         context warmups (general, Mamba hybrid) are skipped; the autotuner
         warmup still runs, on generation requests, followed by one empty_cache."""
         model_engine, resource_manager = self.enterContext(_warmup_and_resources())
-        resource_manager.get_resource_manager(ResourceManagerType.KV_CACHE_MANAGER).is_disagg = True
+        model_engine._config = replace(model_engine._config, is_disagg=True)
         tracker = _Tracker()
         calls, _ = _run_warmup_tracked(
             model_engine, resource_manager, force_helix_cp=True, tracker=tracker
         )
         self.assertEqual(
             tracker.call_args["autotuner"],
-            [((resource_manager,), {"generation_only": True})],
+            [((resource_manager,), {"mode": AutotunerWarmupMode.GENERATION_ONLY})],
             "Helix CP must tune on generation requests only",
         )
         self.assertNotIn("general_warmup", calls, f"Helix CP should skip general; got {calls}")
@@ -1028,9 +1031,7 @@ class TestWarmupCleanup(unittest.TestCase):
         autotuner tunes the context batch plus a max generation batch and the
         Mamba hybrid warmup runs; general warmup stays off."""
         model_engine, resource_manager = self.enterContext(_warmup_and_resources())
-        resource_manager.get_resource_manager(
-            ResourceManagerType.KV_CACHE_MANAGER
-        ).is_disagg = False
+        model_engine._config = replace(model_engine._config, is_disagg=False)
         tracker = _Tracker()
         with patch.object(
             model_engine,
@@ -1042,12 +1043,14 @@ class TestWarmupCleanup(unittest.TestCase):
             )
         self.assertEqual(
             tracker.call_args["autotuner"],
-            [((resource_manager,), {"max_generation_batch": True})],
+            [((resource_manager,), {"mode": AutotunerWarmupMode.CONTEXT_AND_FULL_GENERATION})],
         )
         self.assertIn("mamba_hybrid", calls)
         self.assertNotIn("general_warmup", calls)
 
-    def _run_stubbed_autotuner_warmup(self, **kwargs):
+    def _run_stubbed_autotuner_warmup(
+        self, **kwargs: AutotunerWarmupMode
+    ) -> tuple[SimpleNamespace, SimpleNamespace, Mock]:
         """Run _run_autotuner_warmup on a stub engine (max_num_tokens=100,
         max_batch_size=32, 3 draft tokens, 64 free KV tokens).
 
@@ -1115,7 +1118,7 @@ class TestWarmupCleanup(unittest.TestCase):
         """Disaggregated Helix CP tunes on max_batch_size generation requests
         (bounded by max_num_tokens), without the context batch."""
         engine, resource_manager, get_num_available_tokens = self._run_stubbed_autotuner_warmup(
-            generation_only=True
+            mode=AutotunerWarmupMode.GENERATION_ONLY
         )
 
         # 100 tokens fit 25 requests of 1 + 3 tokens, below max_batch_size.
@@ -1127,13 +1130,13 @@ class TestWarmupCleanup(unittest.TestCase):
         self.assertEqual(engine._completed_autotuner_warmup_num_tokens, 100)
 
     @pytest.mark.cpu_only
-    def test_max_generation_batch_autotuner_warmup_tunes_context_and_max_generation_batch(
+    def test_full_generation_autotuner_warmup_tunes_context_and_max_generation_batch(
         self,
     ) -> None:
         """Aggregated Helix CP tunes the KV-sized context batch, then the same
         max_batch_size generation batch as disaggregated Helix CP."""
         engine, resource_manager, get_num_available_tokens = self._run_stubbed_autotuner_warmup(
-            max_generation_batch=True
+            mode=AutotunerWarmupMode.CONTEXT_AND_FULL_GENERATION
         )
 
         self.assertEqual(

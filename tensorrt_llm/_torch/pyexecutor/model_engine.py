@@ -558,6 +558,8 @@ class ModelEngine:
     def _decoder_runner_config(
         self, config_cls: type[DecoderRunnerConfig] = DecoderRunnerConfig, **extra_fields: Any
     ) -> DecoderRunnerConfig:
+        from ._util import is_disagg_enabled
+
         return config_cls(
             max_batch_size=self.batch_size,
             max_num_tokens=self.max_num_tokens,
@@ -602,6 +604,7 @@ class ModelEngine:
                 and self.llm_args.lora_config.cuda_graph_specialize_lora
             ),
             spec_decode_fast_paths=self.spec_decode_fast_paths,
+            is_disagg=is_disagg_enabled(self.llm_args.cache_transceiver_config),
             **extra_fields,
         )
 
